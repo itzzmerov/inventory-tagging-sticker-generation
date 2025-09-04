@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Inventory Sticker Generator</title>
+
+    <!-- SheetJS for Excel parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- jsPDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <style>
+        body {
+            font-family: Calibri, sans-serif;
+            margin: 20px;
+            background: #f8f9fa;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        input,
+        button {
+            padding: 8px 12px;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        /* A4 Preview (210mm × 297mm = ~794×1123px at 96dpi) */
+        .page {
+            width: 794px;
+            height: 1123px;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 15px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        /* Sticker grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .sticker {
+            border: 1px solid black;
+            padding: 6px;
+            font-size: 12px;
+            line-height: 1.3;
+            box-sizing: border-box;
+        }
+
+        .sticker b {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Inventory Sticker Generator</h2>
+    <input type="file" id="excelFile" accept=".xlsx, .xls" />
+    <br>
+    <button onclick="generatePDF()">Generate PDF</button>
+
+    <div id="preview" class="page"></div>
+
+    <script>
+        let inventoryData = [];
+        const stickersPerPage = 27;
+
+        // Handle Excel file upload
+        document.getElementById("excelFile").addEventListener("change", handleFile);
+
+        function handleFile(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+                const sheet = workbook.Sheets[workbook.SheetNames[0]];
+                inventoryData = XLSX.utils.sheet_to_json(sheet);
+
+                renderPreview(0); // show first page
+            };
+
+            reader.readAsArrayBuffer(file);
+        }
+
+        // Render a single page preview
+        function renderPreview(pageIndex) {
+            const start = pageIndex * stickersPerPage;
+            const end = start + stickersPerPage;
+            const pageData = inventoryData.slice(start, end);
+
+            const container = document.getElementById("preview");
+            container.innerHTML = `<div class="grid">` +
+                pageData.map(item => `
+          <div class="sticker">
+            Name: <b>${item.Name || ""}</b><br>
+            SKU: ${item.SKU || ""}<br>
+            Category: ${item.Category || ""}<br>
+            Location: ${item.Location || ""}<br>
+            Condition: ${item.Condition || ""}<br>
+            Date: ${item.Date || ""}
+          </div>
+        `).join('') +
+                `</div>`;
+        }
+
+        // Generate paginated PDF
+        async function generatePDF() {
+            if (inventoryData.length === 0) {
+                alert("Please upload an Excel file first.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF("p", "mm", "a4");
+            const totalPages = Math.ceil(inventoryData.length / stickersPerPage);
+
+            for (let i = 0; i < totalPages; i++) {
+                // Render one page
+                renderPreview(i);
+
+                // Wait a tick for DOM update
+                await new Promise(resolve => setTimeout(resolve, 100));
+
+                // Capture preview
+                const canvas = await html2canvas(document.getElementById("preview"), { scale: 2 });
+                const imgData = canvas.toDataURL("image/png");
+
+                const pageWidth = pdf.internal.pageSize.getWidth();
+                const pageHeight = pdf.internal.pageSize.getHeight();
+
+                if (i > 0) pdf.addPage();
+                pdf.addImage(imgData, "PNG", 0, 0, pageWidth, pageHeight);
+            }
+
+            pdf.save("inventory_stickers.pdf");
+        }
+    </script>
+</body>
+
+</html>
