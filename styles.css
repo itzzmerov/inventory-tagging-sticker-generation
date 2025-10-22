@@ -1,0 +1,229 @@
+/* Basic layout and styling to match your revised look */
+:root {
+  --dark: #263238;
+  --muted: #e3eef6;
+  --card: #ffffff;
+  --primary: #4a5b6b;
+  --accent: #2f4554;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Calibri, sans-serif;
+  background: var(--muted);
+  color: var(--dark);
+}
+
+/* topbar */
+.topbar {
+  background: var(--dark);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+}
+.topbar .brand .logo {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+.topbar nav a {
+  color: #cfd8dc;
+  margin-right: 20px;
+  text-decoration: none;
+}
+.topbar nav .cta {
+  background: #e6eef6;
+  color: var(--dark);
+  border-radius: 20px;
+  padding: 8px 16px;
+  border: none;
+}
+
+/* main layout */
+.container {
+  display: flex;
+  gap: 30px;
+  padding: 40px;
+  align-items: flex-start;
+}
+.left {
+  flex: 0 0 45%;
+}
+.right {
+  flex: 0 0 45%;
+  margin-left: auto;
+}
+
+/* headings */
+h1 {
+  font-size: 34px;
+  margin: 0 0 20px 0;
+  line-height: 1.05;
+}
+
+/* buttons and cards */
+.btn {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn.secondary {
+  background: #7b8b9a;
+  color: white;
+}
+.btn.disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.controls {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.card {
+  background: var(--card);
+  border-radius: 6px;
+  padding: 14px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* headers list */
+.headers-list {
+  margin: 8px 0 0 18px;
+  padding: 0;
+  list-style: disc;
+}
+.headers-list li {
+  margin: 6px 0;
+}
+
+/* file area */
+.file-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+.file-row .hint {
+  color: #7b8b9a;
+  font-size: 14px;
+}
+
+/* preview */
+.preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.preview-wrapper {
+  min-height: 1150px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+}
+.page {
+  width: 794px;
+  height: 1123px;
+  background: white;
+  border: 6px solid #e0e0e0;
+  padding: 18px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* sticker grid inside page */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.sticker {
+  border: 1px solid black;
+  padding: 8px;
+  font-size: 12px;
+  line-height: 1.25;
+  min-height: 120px; /* so layout looks tidy */
+  box-sizing: border-box;
+}
+
+/* modal */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.18s ease;
+}
+.modal[aria-hidden="false"] {
+  visibility: visible;
+  opacity: 1;
+}
+.modal-content {
+  width: 720px;
+  background: white;
+  border-radius: 8px;
+  padding: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+.header-editor {
+  margin: 12px 0;
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* header row */
+.header-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.header-row input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+.header-row button {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.header-row .remove {
+  background: #e15b5b;
+  color: white;
+}
+.header-row .grab {
+  background: #ccc;
+  color: #333;
+}
+
+/* footer */
+.footer {
+  padding: 18px;
+  text-align: center;
+  color: #fff;
+  background: var(--dark);
+  margin-top: 30px;
+}
