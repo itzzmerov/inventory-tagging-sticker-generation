@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Inventory Sticker Generator - INSTiGEN</title>
+
+    <!-- SheetJS for Excel reading/writing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- jsPDF for PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas for snapshot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+
+  <body>
+    <header>
+      <div class="logo">INSTiGEN</div>
+      <nav style="margin-left: auto; color: #fff">
+        <span style="opacity: 0.9; margin-right: 18px">Home</span>
+        <span style="opacity: 0.9; margin-right: 18px">About Us</span>
+        <span style="opacity: 0.9; margin-right: 18px">Contact</span>
+        <button
+          class="btn"
+          style="
+            margin-left: 18px;
+            background: #e6eef4;
+            color: #2b3b40;
+            border-radius: 20px;
+            padding: 8px 12px;
+          "
+        >
+          Generate Now
+        </button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- LEFT: Controls -->
+      <section class="controls">
+        <h1 class="title">INVENTORY STICKER GENERATOR</h1>
+
+        <div class="btn-row">
+          <button id="customizeBtn" class="btn">Customize Headers</button>
+          <button id="downloadTemplateBtn" class="btn secondary">
+            Download Template
+          </button>
+        </div>
+
+        <div class="panel">
+          <h4>Headers:</h4>
+          <ul id="headersPreview" class="header-list">
+            <!-- populated by JS -->
+          </ul>
+        </div>
+
+        <div class="file-row">
+          <label for="excelFile" class="file-btn" style="cursor: pointer"
+            >Choose File</label
+          >
+          <input
+            id="excelFile"
+            type="file"
+            accept=".xlsx,.xls"
+            style="display: none"
+          />
+          <div class="hint">
+            Upload file to show the preview before generating the PDF
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Preview -->
+      <section class="preview-panel">
+        <div class="preview-header">
+          <div>
+            <div class="preview-title">PREVIEW:</div>
+            <div class="small">
+              Shows first page preview. PDF will be A4, paginated.
+            </div>
+          </div>
+          <div>
+            <button
+              id="generatePdfBtn"
+              class="generate-btn"
+              style="display: none"
+            >
+              Generate PDF
+            </button>
+          </div>
+        </div>
+
+        <div class="page-wrap">
+          <div id="a4page" class="a4">
+            <!-- live preview inserted here -->
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal (Customize Headers) -->
+    <div id="modal" class="modal-backdrop">
+      <div class="modal" role="dialog" aria-modal="true">
+        <h3>Customize Headers</h3>
+        <p class="small">
+          Edit, remove, or add headers. Order matters — this defines the Excel
+          template columns and sticker field order.
+        </p>
+
+        <div class="headers-list" id="headersList"></div>
+
+        <div style="display: flex; gap: 8px; margin-top: 8px">
+          <input
+            id="newHeaderInput"
+            placeholder="New header name (e.g. Serial Number)"
+            style="
+              flex: 1;
+              padding: 8px;
+              border-radius: 6px;
+              border: 1px solid #ccc;
+            "
+          />
+          <button id="addHeaderBtn" class="ghost">Add</button>
+        </div>
+
+        <div class="controls-row">
+          <button id="cancelModal" class="ghost">Cancel</button>
+          <button id="saveHeaders" class="btn">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
