@@ -9,6 +9,8 @@
    #E6E6E6
    ========================= */
 
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Marcellus&display=swap");
+
 :root {
   --dark: #29353c;
   --mid: #44576d;
@@ -27,7 +29,7 @@ html {
 }
 body {
   margin: 0;
-  font-family: "Georgia", "Times New Roman", serif;
+  font-family: "Inria Sans", sans-serif;
   color: var(--dark);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -40,7 +42,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  height: 72px;
+  height: 100px;
   background: var(--dark);
   z-index: 1200;
   display: flex;
@@ -48,7 +50,7 @@ body {
   border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 .header-inner {
-  width: 90%;
+  width: 100vw;
   margin: 0 100px;
   display: flex;
   align-items: center;
@@ -59,37 +61,29 @@ body {
   align-items: center;
   gap: 12px;
 }
-.brand-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--muted-bg);
-  color: var(--dark);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+.logo {
+  width: 75px;
+  height: 75px;
 }
 .brand-text {
   color: var(--white);
-  font-family: "Trebuchet MS", sans-serif;
+  font-family: "Marcellus", serif;
   letter-spacing: 1px;
-  font-size: 20px;
+  font-size: 35px;
 }
 
 /* Navigation */
 .main-nav {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 50px;
   position: relative;
 }
 .main-nav .nav-link {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  padding: 8px 10px;
-  font-size: 15px;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 20px;
   border-bottom: 2px solid transparent;
 }
 .main-nav .nav-link:hover {
@@ -109,6 +103,8 @@ body {
   border-radius: 20px;
   text-decoration: none;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  font-family: "Inria Sans", sans-serif;
+  font-size: 20px;
 }
 .nav-toggle {
   display: none;
@@ -117,18 +113,13 @@ body {
   color: var(--white);
   font-size: 22px;
 }
-#logo {
-  width: 100px;
-}
 
 /* ===== Hero ===== */
-.container {
+.hero {
+  padding-top: 110px;
+  padding-bottom: 40px;
   width: 90%;
   margin: 0 100px;
-}
-.hero {
-  padding-top: 110px; /* account for fixed header */
-  padding-bottom: 40px;
 }
 .hero-inner {
   display: flex;
@@ -146,6 +137,8 @@ body {
   line-height: 1.05;
   margin: 0 0 16px;
   color: var(--dark);
+  font-family: "Inria Serif", serif;
+  font-style: bold;
 }
 .hero-left h1 strong {
   font-weight: 800;
@@ -184,30 +177,14 @@ body {
   text-decoration: underline;
   font-weight: 600;
 }
-
-/* hero illustration */
 .hero-right {
   flex: 0 1 38%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.hero-ill {
-  width: 92%;
-  height: auto;
-  transform: translateY(-6px);
-}
-
-/* small strip below hero */
-.small-strip {
-  background: var(--mid);
-  color: #fff;
-  padding: 14px 0;
-  margin-top: 12px;
-}
-.small-strip .narrow {
-  width: min(1180px, 95%);
-  margin: 0 auto;
+.hero-img {
+  width: 700px;
 }
 
 /* ===== About section ===== */
@@ -216,7 +193,7 @@ body {
   display: flex;
   gap: 30px;
   align-items: flex-start;
-  padding: 54px;
+  padding: 54px 100px;
 }
 .about-left {
   flex: 0 0 52%;
@@ -268,20 +245,18 @@ body {
 
 /* ===== Contact section ===== */
 .contact {
-  padding: 34px 0 90px 0;
+  padding: 34px 100px;
 }
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  align-items: center;
   background: transparent;
 }
 .contact-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 18px;
+  border-radius: 18px 0 0 18px;
   display: block;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
 }
@@ -289,7 +264,11 @@ body {
   background: var(--mid);
   color: var(--bg);
   padding: 28px;
-  border-radius: 18px;
+  border-radius: 0 18px 18px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .contact-form h2 {
   margin-top: 0;
