@@ -1,0 +1,307 @@
+@import url("https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Marcellus&display=swap");
+
+:root {
+  --dark: #29353c;
+  --mid: #44576d;
+  --soft: #768a96;
+  --accent: #aac7d8;
+  --bg: #dfebf6;
+  --muted-bg: #e6e6e6;
+  --white: #ffffff;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: "Calibri", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  background: var(--bg);
+  color: #111;
+}
+/* ===== Header (fixed) ===== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: var(--dark);
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+.header-inner {
+  width: 100vw;
+  margin: 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.logo {
+  width: 75px;
+  height: 75px;
+}
+.brand-text {
+  color: var(--white);
+  font-family: "Marcellus", serif;
+  letter-spacing: 1px;
+  font-size: 35px;
+}
+
+/* Navigation */
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  position: relative;
+}
+.main-nav .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  font-family: "Inria Sans", sans-serif;
+  font-size: 20px;
+  border-bottom: 2px solid transparent;
+}
+.main-nav .nav-link:hover {
+  color: var(--accent);
+  transform: translateY(-1px);
+  transition: 0.18s;
+}
+.main-nav .nav-link.active {
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+}
+
+.nav-cta {
+  background: var(--muted-bg);
+  color: var(--dark);
+  padding: 10px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  font-family: "Inria Sans", sans-serif;
+  font-size: 20px;
+}
+.nav-toggle {
+  display: none;
+  background: transparent;
+  border: 0;
+  color: var(--white);
+  font-size: 22px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 700px 1fr;
+  gap: 18px;
+  padding: 28px;
+  margin-top: 100px;
+}
+
+/* Left panel (controls) */
+.controls {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  min-height: 560px;
+}
+.title {
+  font-size: 28px;
+  margin: 0 0 18px 0;
+  letter-spacing: 0.6px;
+}
+.btn-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.btn {
+  background: var(--mid);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+.panel {
+  margin-top: 10px;
+  background: #fff;
+  padding: 14px;
+  border-radius: 8px;
+  min-height: 120px;
+}
+.panel h4 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+}
+.header-list {
+  margin: 8px 0 0 0;
+  padding-left: 18px;
+}
+.header-list li {
+  margin: 6px 0;
+}
+
+.file-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+}
+.file-btn {
+  background: #3e5560;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+.hint {
+  color: #7b8386;
+  margin-left: 6px;
+  font-size: 14px;
+}
+
+/* Right panel - preview and generate button */
+.preview-panel {
+  padding: 18px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.preview-title {
+  font-weight: 700;
+  color: var(--dark);
+}
+.generate-btn {
+  background: #455a66;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+}
+/* A4 preview box */
+.page-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 8px;
+  background: #f4f7fa;
+  border-radius: 6px;
+  border: 1px solid #e0e6ea;
+}
+
+/* Use pixel-accurate A4 preview for html2canvas capture */
+.a4 {
+  width: 794px;
+  min-height: 1123px; /* instead of fixed height */
+  background: white;
+  border: 6px solid #dcdee1;
+  box-sizing: border-box;
+  padding: 18px;
+}
+
+/* grid of stickers: 3 columns x 8 rows = 24 per page */
+.grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  box-sizing: border-box;
+  align-items: start; /* keeps all items aligned from top */
+}
+
+.sticker {
+  border: 1px solid #222;
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: 12px;
+  line-height: 1.25;
+  background: #fff;
+}
+.sticker .name {
+  font-weight: 700;
+  color: #c62828;
+  margin-bottom: 6px;
+}
+.sticker .row {
+  margin-bottom: 3px;
+}
+
+/* simple modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.modal {
+  background: #fff;
+  padding: 18px;
+  border-radius: 8px;
+  width: 520px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+.modal h3 {
+  margin-top: 0;
+}
+.headers-list {
+  max-height: 300px;
+  overflow: auto;
+  margin: 10px 0;
+}
+.header-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.header-item input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.small {
+  font-size: 13px;
+  color: #666;
+}
+
+.controls-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  justify-content: flex-end;
+}
+.ghost {
+  background: transparent;
+  border: 1px solid #bbb;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+}
