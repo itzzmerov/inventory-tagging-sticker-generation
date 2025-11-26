@@ -504,10 +504,10 @@ textarea {
 }
 
 /* ================================ */
-/* =    MOBILE VIEW (≤ 1024px)    = */
+/* =     MOBILE VIEW (≤ 820px)    = */
 /* ================================ */
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   /* HEADER & NAVBAR */
   .header-inner {
     padding: 0 30px;
@@ -615,11 +615,13 @@ textarea {
   .about-right {
     flex: 1 1 100%;
     justify-content: center;
+    width: 100%;
   }
 
   .cards {
     grid-template-columns: 1fr;
     gap: 16px;
+    justify-items: center;
   }
 
   .info-card {
@@ -692,7 +694,7 @@ textarea {
   /* HEADER & NAVBAR */
   .header-inner {
     padding: 0 20px;
-    margin: 0 0;
+    margin: 0 0px;
   }
 
   .brand-text {
