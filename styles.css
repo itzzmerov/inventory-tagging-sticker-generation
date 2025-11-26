@@ -685,13 +685,14 @@ textarea {
 }
 
 /* ================================ */
-/* =   XS MOBILE VIEW (≤ 1024px)  = */
+/* =   XS MOBILE VIEW (≤ 480px)   = */
 /* ================================ */
 
 @media (max-width: 480px) {
   /* HEADER & NAVBAR */
   .header-inner {
     padding: 0 20px;
+    margin: 0 50px;
   }
 
   .brand-text {
