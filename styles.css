@@ -491,6 +491,16 @@ textarea {
   #submit-btn {
     padding: 14px 80px;
   }
+
+  /* FOOTER SECTION */
+  .footer-inner {
+    width: 95%;
+    gap: 4px;
+  }
+
+  #copyright {
+    font-size: 18px;
+  }
 }
 
 /* ================================ */
@@ -661,6 +671,17 @@ textarea {
     font-size: 13px;
     padding: 10px 12px;
   }
+
+  /* FOOTER SECTION */
+  .footer-inner {
+    gap: 3px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  #copyright {
+    font-size: 16px;
+  }
 }
 
 /* ================================ */
@@ -763,5 +784,14 @@ textarea {
     padding: 10px 40px;
     font-size: 14px;
     width: 100%;
+  }
+
+  /* FOOTER SECTION */
+  .footer-inner {
+    gap: 2px;
+  }
+
+  #copyright {
+    font-size: 14px;
   }
 }
