@@ -105,12 +105,13 @@ body {
   font-family: "Inria Sans", sans-serif;
   font-size: 20px;
 }
+
 .nav-toggle {
   display: none;
   background: transparent;
   border: 0;
   color: var(--white);
-  font-size: 22px;
+  font-size: 35px;
 }
 
 /* ===== Hero ===== */
@@ -302,7 +303,7 @@ body {
   margin-bottom: 0;
   font-size: 50px;
   color: var(--bg);
-  font-family: 'Inria Serif', serif;
+  font-family: "Inria Serif", serif;
   border-bottom: 2px solid white;
 }
 .contact-form .small {
@@ -385,4 +386,79 @@ textarea {
 .sr-only {
   position: absolute;
   left: -99999px;
+}
+
+/* ===========================
+   MOBILE NAVIGATION
+=========================== */
+@media (max-width: 830px) {
+  .header-inner {
+    padding: 0 24px;
+    width: 100%;
+  }
+
+  .brand-text {
+    font-size: 28px;
+  }
+
+  /* Show Burger */
+  .nav-toggle {
+    display: block;
+  }
+
+  /* Hide desktop menu */
+  .main-nav {
+    position: fixed;
+    top: 90px;
+    right: 0;
+    width: 100%;
+    background: var(--dark);
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 7px 0;
+
+    /* Hidden by default */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  /* When active (JS toggles .open) */
+  .main-nav.open {
+    max-height: 400px; /* enough for the 4 links */
+  }
+
+  /* Mobile nav items */
+  .main-nav .nav-link,
+  .main-nav .nav-cta {
+    font-size: 22px;
+  }
+
+  .nav-cta {
+    padding: 12px 22px;
+    border-radius: 25px;
+  }
+}
+
+/* ===========================
+   SMALL MOBILE 
+=========================== */
+@media (max-width: 480px) {
+  .logo {
+    width: 55px;
+    height: 55px;
+  }
+
+  .brand-text {
+    font-size: 25px;
+  }
+
+  .header-inner {
+    padding: 0 18px;
+  }
+
+  .nav-toggle {
+    font-size: 40px;
+  }
 }
