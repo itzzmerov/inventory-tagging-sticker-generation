@@ -106,12 +106,14 @@ body {
   font-size: 20px;
 }
 
+/* HAMBURGER BUTTON */
 .nav-toggle {
   display: none;
   background: transparent;
-  border: 0;
+  border: none;
   color: var(--white);
-  font-size: 35px;
+  font-size: 32px;
+  cursor: pointer;
 }
 
 /* ===== Hero ===== */
@@ -388,77 +390,94 @@ textarea {
   left: -99999px;
 }
 
-/* ===========================
-   MOBILE NAVIGATION
-=========================== */
-@media (max-width: 830px) {
+/* ================================ */
+/* =    TABLET VIEW (≤ 1024px)    = */
+/* ================================ */
+
+@media (max-width: 1024px) {
   .header-inner {
-    padding: 0 24px;
+    padding: 0 50px;
     width: 100%;
   }
 
-  .brand-text {
-    font-size: 28px;
+  .main-nav {
+    gap: 30px;
   }
 
-  /* Show Burger */
+  .brand-text {
+    font-size: 30px;
+  }
+
+  .logo {
+    width: 65px;
+    height: 65px;
+  }
+}
+
+/* ================================ */
+/* =    MOBILE VIEW (≤ 1024px)    = */
+/* ================================ */
+
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 0 30px;
+  }
+
   .nav-toggle {
     display: block;
   }
 
-  /* Hide desktop menu */
   .main-nav {
-    position: fixed;
+    position: absolute;
     top: 90px;
     right: 0;
     width: 100%;
     background: var(--dark);
     flex-direction: column;
-    align-items: center;
-    gap: 25px;
-    padding: 7px 0;
-
-    /* Hidden by default */
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
+    gap: 20px;
+    padding: 30px 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: 0.25s ease;
   }
 
-  /* When active (JS toggles .open) */
   .main-nav.open {
-    max-height: 400px; /* enough for the 4 links */
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
   }
 
-  /* Mobile nav items */
   .main-nav .nav-link,
-  .main-nav .nav-cta {
-    font-size: 22px;
-  }
-
   .nav-cta {
-    padding: 12px 22px;
-    border-radius: 25px;
+    font-size: 20px;
   }
 }
 
-/* ===========================
-   SMALL MOBILE 
-=========================== */
+/* ================================ */
+/* =   XS MOBILE VIEW (≤ 1024px)  = */
+/* ================================ */
+
 @media (max-width: 480px) {
+  .header-inner {
+    padding: 0 20px;
+  }
+
+  .brand-text {
+    font-size: 26px;
+  }
+
   .logo {
     width: 55px;
     height: 55px;
   }
 
-  .brand-text {
-    font-size: 25px;
+  .main-nav {
+    padding: 25px 0;
   }
 
-  .header-inner {
-    padding: 0 18px;
-  }
-
-  .nav-toggle {
-    font-size: 40px;
+  .main-nav .nav-link,
+  .nav-cta {
+    font-size: 18px;
   }
 }
