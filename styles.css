@@ -317,7 +317,7 @@ body {
   flex-direction: column;
   width: 100%;
 }
-/* form inputs */
+
 input[type="text"],
 input[type="email"],
 textarea {
@@ -473,6 +473,24 @@ textarea {
   .info-card .card-images {
     width: 100px;
   }
+
+  /* CONTACT SECTION */
+  .contact {
+    padding: 34px 50px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .contact-form h2 {
+    font-size: 42px;
+  }
+
+  #submit-btn {
+    padding: 14px 80px;
+  }
 }
 
 /* ================================ */
@@ -606,6 +624,43 @@ textarea {
   .info-card .card-images {
     width: 90px;
   }
+
+  /* CONTACT SECTION */
+  .contact {
+    padding: 30px 30px;
+  }
+
+  .contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-image img {
+    border-radius: 18px;
+    height: auto;
+  }
+
+  .contact-form {
+    border-radius: 18px;
+    padding: 20px;
+  }
+
+  .contact-form h2 {
+    font-size: 36px;
+  }
+
+  #submit-btn {
+    padding: 12px 60px;
+    font-size: 15px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
 }
 
 /* ================================ */
@@ -682,5 +737,31 @@ textarea {
 
   .info-card .card-images {
     width: 70px;
+  }
+
+  /* CONTACT SECTION */
+  .contact {
+    padding: 20px 15px;
+  }
+
+  .contact-form h2 {
+    font-size: 28px;
+  }
+
+  .contact-form .small {
+    font-size: 13px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+
+  #submit-btn {
+    padding: 10px 40px;
+    font-size: 14px;
+    width: 100%;
   }
 }
