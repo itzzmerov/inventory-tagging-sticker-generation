@@ -395,9 +395,9 @@ textarea {
 /* ================================ */
 
 @media (max-width: 1024px) {
+  /* HEADER & NAVBAR */
   .header-inner {
     padding: 0 50px;
-    width: 100%;
   }
 
   .main-nav {
@@ -412,6 +412,34 @@ textarea {
     width: 65px;
     height: 65px;
   }
+
+  /* HERO SECTION */
+  .hero {
+    margin: 0 50px;
+  }
+
+  .hero-inner {
+    gap: 24px;
+  }
+
+  .hero-left {
+    max-width: 60%;
+  }
+
+  .hero-left h1 {
+    font-size: 42px;
+  }
+
+  .lead {
+    font-size: 18px;
+    max-width: 480px;
+  }
+
+  .hero-img {
+    width: 500px;
+  }
+
+  /* ABOUT SECTION */
 }
 
 /* ================================ */
@@ -419,6 +447,7 @@ textarea {
 /* ================================ */
 
 @media (max-width: 768px) {
+  /* HEADER & NAVBAR */
   .header-inner {
     padding: 0 30px;
   }
@@ -452,6 +481,53 @@ textarea {
   .nav-cta {
     font-size: 20px;
   }
+
+  /* HERO SECTION */
+  .hero {
+    margin: 0 30px;
+    padding-top: 120px; /* because of mobile navbar */
+  }
+
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .hero-left {
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .hero-left h1 {
+    font-size: 36px;
+    line-height: 1.15;
+  }
+
+  .lead {
+    font-size: 18px;
+    margin: 0 auto 20px;
+  }
+
+  .hero-ctas {
+    justify-content: center;
+  }
+
+  .btn.primary {
+    padding: 14px 24px;
+    font-size: 18px;
+  }
+
+  .btn.ghost {
+    font-size: 16px;
+  }
+
+  .hero-img {
+    width: 360px;
+    max-width: 100%;
+  }
+
+  /* ABOUT SECTION */
 }
 
 /* ================================ */
@@ -459,6 +535,7 @@ textarea {
 /* ================================ */
 
 @media (max-width: 480px) {
+  /* HEADER & NAVBAR */
   .header-inner {
     padding: 0 20px;
   }
@@ -480,4 +557,32 @@ textarea {
   .nav-cta {
     font-size: 18px;
   }
+
+  /* HERO SECTION */
+  .hero {
+    margin: 0 20px;
+  }
+
+  .hero-left h1 {
+    font-size: 30px;
+  }
+
+  .lead {
+    font-size: 16px;
+  }
+
+  .btn.primary {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .btn.ghost {
+    font-size: 15px;
+  }
+
+  .hero-img {
+    width: 280px;
+  }
+
+  /* ABOUT SECTION */
 }
