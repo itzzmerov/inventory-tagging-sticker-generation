@@ -391,7 +391,7 @@ textarea {
 }
 
 /* ================================ */
-/* =    TABLET VIEW (≤ 1024px)    = */
+/* =    LAPTOP VIEW (≤ 1024px)    = */
 /* ================================ */
 
 @media (max-width: 1024px) {
@@ -447,11 +447,11 @@ textarea {
   }
 
   .about-left {
-    flex: 0 0 50%;
+    flex: 0 0 48%;
   }
 
   .about-left h2 {
-    font-size: 60px;
+    font-size: 58px;
   }
 
   .about-left .about-text {
@@ -459,19 +459,28 @@ textarea {
   }
 
   .about-right {
-    flex: 1 1 50%;
+    flex: 1 1 52%;
   }
 
   .cards {
-    gap: 12px;
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 10px;
   }
 
-  .info-card h3 {
-    font-size: 22px;
+  .info-card {
+    padding: 12px 14px;
+    gap: 10px;
+    min-height: 70px;
   }
 
   .info-card .card-images {
-    width: 100px;
+    width: 85px;
+  }
+
+  .info-card h3 {
+    font-size: 20px;
+    line-height: 1.2;
   }
 
   /* CONTACT SECTION */
@@ -504,10 +513,10 @@ textarea {
 }
 
 /* ================================ */
-/* =     MOBILE VIEW (≤ 820px)    = */
+/* =     TABLET VIEW (≤ 768px)    = */
 /* ================================ */
 
-@media (max-width: 820px) {
+@media (max-width: 768px) {
   /* HEADER & NAVBAR */
   .header-inner {
     padding: 0 30px;
@@ -546,7 +555,7 @@ textarea {
   /* HERO SECTION */
   .hero {
     margin: 0 30px;
-    padding-top: 120px; /* because of mobile navbar */
+    padding-top: 120px;
   }
 
   .hero-inner {
@@ -687,7 +696,7 @@ textarea {
 }
 
 /* ================================ */
-/* =   XS MOBILE VIEW (≤ 480px)   = */
+/* =     MOBILE VIEW (≤ 480px)    = */
 /* ================================ */
 
 @media (max-width: 480px) {
