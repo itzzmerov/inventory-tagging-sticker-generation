@@ -477,68 +477,114 @@ main {
 /* =     MOBILE VIEW (≤ 480px)    = */
 /* ================================ */
 
-@media (max-width: 480px) {
+/* HEADER & NAVBAR */
+.header-inner {
+  padding: 0 15px;
+}
 
-  main {
-    padding: 16px;
-    gap: 14px;
-    margin-top: 60px;
-  }
+.brand-text {
+  font-size: 24px;
+}
 
-  .title {
-    font-size: 22px;
-  }
+.logo {
+  width: 50px;
+  height: 50px;
+}
 
-  .btn-row {
-    flex-wrap: wrap;
-  }
+.main-nav {
+  padding: 20px 0;
+}
 
-  .btn {
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-  }
+.main-nav .nav-link,
+.nav-cta {
+  font-size: 16px;
+}
 
-  .controls {
-    padding: 16px;
-  }
+/* MAIN GENERATOR PAGE */
+main {
+  display: flex;
+  flex-direction: column; /* Stack left & right panel */
+  padding: 12px;
+  gap: 14px;
+  margin-top: 50px;
+}
 
-  .panel {
-    padding: 12px;
-    min-height: auto;
-  }
+/* LEFT PANEL */
+.controls {
+  width: 100%;
+  padding: 14px;
+}
 
-  .file-row {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+.title {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
 
-  .file-btn {
-    width: 100%;
-    padding: 10px;
-  }
+.btn-row {
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
 
-  .page-wrap {
-    overflow-x: scroll;
-  }
+.btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+}
 
-  .a4 {
-    width: 600px;
-    min-height: 860px;
-    padding: 12px;
-  }
+/* Panels inside controls */
+.panel {
+  padding: 10px;
+  min-height: auto;
+}
 
-  .sticker {
-    padding: 6px;
-    font-size: 11px;
-  }
+.file-row {
+  flex-direction: column;
+  gap: 10px;
+}
 
-  /* FOOTER SECTION */
-  .footer-inner {
-    gap: 2px;
-  }
+.file-btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+}
 
-  #copyright {
-    font-size: 14px;
-  }
+.hint {
+  font-size: 12px;
+}
+
+/* RIGHT PANEL */
+.preview-panel {
+  width: 100%;
+  padding: 12px;
+}
+
+/* Page wrapper for horizontal scroll if needed */
+.page-wrap {
+  overflow-x: auto;
+  padding: 4px;
+}
+
+/* A4 preview remains full size for PDF generation */
+.a4 {
+  width: 794px; /* maintain A4 width */
+  min-height: 1123px;
+  padding: 12px;
+  border: 6px solid #dcdee1;
+  box-sizing: border-box;
+}
+
+/* Stickers inside the A4 preview: slightly smaller font for mobile readability */
+.sticker {
+  padding: 6px;
+  font-size: 11px;
+}
+
+/* Footer adjustments */
+.footer-inner {
+  gap: 2px;
+}
+
+#copyright {
+  font-size: 14px;
 }
