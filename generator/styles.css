@@ -355,25 +355,43 @@ main {
     width: 65px;
     height: 65px;
   }
-  /* MAIN GENERATOR */
+  
+  /* MAIN GENERATOR PAGE - 1 column layout */
   main {
-    grid-template-columns: 450px 1fr;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
     gap: 16px;
-    padding: 24px;
+    margin-top: 80px;
   }
 
   .controls {
+    order: 1;
     padding: 18px;
     min-height: auto;
   }
 
-  .title {
-    font-size: 24px;
+  .preview-panel {
+    order: 2;
+    padding: 12px;
+    gap: 10px;
+    overflow-x: auto; /* allow horizontal scroll */
   }
 
-  .btn {
-    padding: 10px 16px;
-    font-size: 14px;
+  .page-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 6px;
+  }
+
+  .a4 {
+    width: 794px; /* same as desktop */
+    min-height: 1123px;
+    box-sizing: border-box;
+    flex-shrink: 0; /* prevent shrinking in scroll */
   }
 
   /* FOOTER SECTION */
