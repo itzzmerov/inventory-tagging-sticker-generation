@@ -659,16 +659,19 @@ textarea {
   .contact-grid {
     display: flex;
     flex-direction: column;
-    gap: 20px;
   }
 
   .contact-image img {
-    border-radius: 18px;
+    border-radius: 0;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
     height: auto;
   }
 
   .contact-form {
-    border-radius: 18px;
+    border-radius: 0;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
     padding: 20px;
   }
 
