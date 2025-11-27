@@ -19,7 +19,7 @@
 <body>
   <header class="site-header" id="top">
     <div class="header-inner">
-      <a href="../index.html" style="text-decoration: none;">
+      <a href="#home" style="text-decoration: none">
         <div class="brand">
           <img src="../images/logo.png" alt="INSTiGEN Logo" class="logo" />
           <div class="brand-text">INSTiGEN</div>
@@ -27,11 +27,13 @@
       </a>
 
       <nav class="main-nav" id="mainNav">
-        <a href="../#home" class="nav-link">Home</a>
+        <a href="../#home" class="nav-link active">Home</a>
         <a href="../#about" class="nav-link">About Us</a>
         <a href="../#contact" class="nav-link">Contact Us</a>
-        <a href="/generator.html" class="nav-cta active">Generate Now</a>
+        <a href="generator.html" class="nav-cta">Generate Now</a>
       </nav>
+
+      <button id="navToggle" class="nav-toggle">☰</button>
     </div>
   </header>
 
@@ -114,6 +116,18 @@
       </div>
     </div>
   </div>
+
+  <!-- FOOTER section -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div id="copyright">INSTiGEN © 2025</div>
+      <div class="muted">
+        Developed by
+        <span><a href="https://www.github.com/itzzmerov"
+            style="color: #a9b6c2; text-decoration: none">itzzmerov</a></span>
+      </div>
+    </div>
+  </footer>
 
   <script src="app.js"></script>
 </body>

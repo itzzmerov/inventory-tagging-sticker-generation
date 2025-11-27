@@ -1,6 +1,3 @@
-/**********************
- * App state & config *
- **********************/
 const DEFAULT_HEADERS = [
   "Name",
   "SKU",
@@ -14,13 +11,15 @@ const DEFAULT_HEADERS = [
 // Grid config: 3 columns x 8 rows = 24 stickers per page
 const COLUMNS = 3;
 const ROWS = 8;
-const STICKERS_PER_PAGE = COLUMNS * ROWS; // 24
+const STICKERS_PER_PAGE = COLUMNS * ROWS;
 
-let headers = [...DEFAULT_HEADERS]; // current header config (editable)
-let inventoryData = []; // parsed Excel rows
+let headers = [...DEFAULT_HEADERS];
+let inventoryData = [];
 let currentPreviewPage = 0;
 
-// DOM refs
+/**********************
+ * DOM references     *
+ **********************/
 const customizeBtn = document.getElementById("customizeBtn");
 const downloadTemplateBtn = document.getElementById("downloadTemplateBtn");
 const headersPreview = document.getElementById("headersPreview");
@@ -36,6 +35,11 @@ const addHeaderBtn = document.getElementById("addHeaderBtn");
 const cancelModal = document.getElementById("cancelModal");
 const saveHeaders = document.getElementById("saveHeaders");
 
+// Hamburger menu references
+const navToggle = document.getElementById("navToggle");
+const mainNav = document.getElementById("mainNav");
+const navLinks = document.querySelectorAll(".main-nav .nav-link");
+
 /**********************
  * Utility functions  *
  **********************/
@@ -49,7 +53,6 @@ function refreshHeadersPreview() {
 }
 
 function openModal() {
-  // populate modal list
   headersList.innerHTML = "";
   headers.forEach((h, idx) => {
     const row = document.createElement("div");
@@ -80,7 +83,7 @@ function openModal() {
     remove.className = "ghost";
     remove.onclick = () => {
       headers.splice(idx, 1);
-      openModal(); // refresh
+      openModal();
     };
 
     row.appendChild(input);
@@ -106,7 +109,6 @@ function closeModal() {
 }
 
 function collectModalValues() {
-  // collect values from inputs in modal headersList
   const newHeaders = [];
   const children = headersList.querySelectorAll(".header-item");
   for (let i = 0; i < children.length; i++) {
@@ -118,10 +120,9 @@ function collectModalValues() {
 }
 
 /**********************
- * Excel template download (dynamic)
+ * Excel template download
  **********************/
 function downloadTemplate() {
-  // Create a sheet with header row only (and one blank row for guidance)
   const wsData = [headers, headers.map(() => "")];
   const ws = XLSX.utils.aoa_to_sheet(wsData);
   const wb = XLSX.utils.book_new();
@@ -145,8 +146,6 @@ function handleFileInput(e) {
       const sheet = workbook.Sheets[workbook.SheetNames[0]];
       const json = XLSX.utils.sheet_to_json(sheet, { defval: "" });
 
-      // Basic validation: check that file contains at least the chosen headers
-      // We'll accept files with extra columns too.
       const missing = headers.filter(
         (h) => !Object.keys(json[0] || {}).includes(h)
       );
@@ -154,8 +153,8 @@ function handleFileInput(e) {
         if (
           !confirm(
             "Warning: The uploaded file is missing these headers:\n\n" +
-              missing.join(", ") +
-              "\n\nContinue anyway?"
+            missing.join(", ") +
+            "\n\nContinue anyway?"
           )
         ) {
           return;
@@ -163,13 +162,11 @@ function handleFileInput(e) {
       }
 
       inventoryData = json.map((row) => {
-        // Normalize the item by ensuring every header exists
         const item = {};
         headers.forEach((h) => (item[h] = row[h] !== undefined ? row[h] : ""));
         return item;
       });
 
-      // show preview first page and show generate button
       currentPreviewPage = 0;
       renderPreviewPage(currentPreviewPage);
       generatePdfBtn.style.display = "inline-block";
@@ -185,16 +182,12 @@ function handleFileInput(e) {
  * Preview rendering
  **********************/
 function renderPreviewPage(pageIndex) {
-  // build grid of stickers for pageIndex
   const start = pageIndex * STICKERS_PER_PAGE;
   const end = start + STICKERS_PER_PAGE;
   const pageData = inventoryData.slice(start, end);
-
-  // create grid container
   const grid = document.createElement("div");
   grid.className = "grid";
 
-  // Fill with stickers (if less than capacity, fill blanks for consistent layout)
   for (let i = 0; i < pageData.length; i++) {
     const cell = document.createElement("div");
     cell.className = "sticker";
@@ -217,12 +210,10 @@ function renderPreviewPage(pageIndex) {
     grid.appendChild(cell);
   }
 
-  // clear previous and append
   a4page.innerHTML = "";
   a4page.appendChild(grid);
 }
 
-// simple HTML escape for values
 function escapeHtml(s) {
   return s.replace(/[&<>"']/g, function (m) {
     return {
@@ -250,14 +241,9 @@ async function generatePDF() {
 
   for (let p = 0; p < totalPages; p++) {
     renderPreviewPage(p);
-
-    // give browser a tick to layout
     await new Promise((r) => setTimeout(r, 120));
-
-    // capture a4page
     const canvas = await html2canvas(a4page, { scale: 2, useCORS: true });
     const imgData = canvas.toDataURL("image/png");
-
     const pageWidth = pdf.internal.pageSize.getWidth();
     const pageHeight = pdf.internal.pageSize.getHeight();
 
@@ -299,15 +285,44 @@ saveHeaders.addEventListener("click", () => {
   closeModal();
 });
 
-// When modal inputs exist, we need to update underlying headers on save.
-// Also implement inline save on modal close if needed.
 window.addEventListener("click", (ev) => {
   if (ev.target === modal) closeModal();
 });
 
-// initial render
+/**********************
+ * Hamburger menu logic
+ **********************/
+document.addEventListener("DOMContentLoaded", () => {
+  if (navToggle && mainNav) {
+    navToggle.addEventListener("click", () => {
+      mainNav.classList.toggle("open");
+    });
+
+    navLinks.forEach((a) => {
+      a.addEventListener("click", (e) => {
+        const href = a.getAttribute("href");
+        if (href && href.startsWith("#")) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            const topOffset = 72;
+            const top =
+              target.getBoundingClientRect().top + window.pageYOffset - topOffset - 8;
+            window.scrollTo({ top, behavior: "smooth" });
+          }
+        }
+        navLinks.forEach((n) => n.classList.remove("active"));
+        a.classList.add("active");
+        if (mainNav.classList.contains("open")) mainNav.classList.remove("open");
+      });
+    });
+  }
+});
+
+/**********************
+ * Initial render
+ **********************/
 refreshHeadersPreview();
-// render a blank preview initially (empty A4 with grid placeholders)
 (function initialBlankPreview() {
   inventoryData = [];
   renderPreviewPage(0);
