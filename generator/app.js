@@ -47,7 +47,7 @@ function refreshHeadersPreview() {
   headersPreview.innerHTML = "";
   headers.forEach((h) => {
     const li = document.createElement("li");
-    li.textContent = "- " + h;
+    li.textContent = " " + h;
     headersPreview.appendChild(li);
   });
 }
