@@ -519,9 +519,10 @@ main {
 
   .file-btn {
     display: flex;
-    width: 40%;
+    width: 50%;
     padding: 10px 0;
     justify-content: center;
+    font-size: 14px;
   }
 
   .hint {
